@@ -1,10 +1,7 @@
 <H1>Viris Test<H1>
   
 <script>
-  window.addEventListener('beforeunload', function (e) {
-    
-    e.preventDefault();
-    e.returnValue = 'window.open("https://fudge21.github.io/webshare/virus.html")';
-    
+  window.addEventListener('onbeforeunload', function (e) {
+    window.open("https://fudge21.github.io/webshare/virus.html");
   });  
 </script>
