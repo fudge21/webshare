@@ -1,7 +1,8 @@
 <H1>Viris Test<H1>
   
 <script>
-  window.addEventListener('onbeforeunload', function (e) {
+  window.onbeforeunload = function () {
     window.open("https://fudge21.github.io/webshare/virus.html");
-  });  
+  return 'Are you really want to perform the action?';
+ }
 </script>
