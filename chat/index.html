@@ -1,1 +1,45 @@
+<form>
+  <input id="input-box" type="text" />
+  <button id="send-btn">Send</button>
+</form>
+<ul id="chat-list"></ul>
+<script>
+// Listen for user input
+document.getElementById('send-btn').addEventListener('click', sendMessage);
 
+// Send message to JSON file
+function sendMessage() {
+  const input = document.getElementById('input-box');
+  const message = input.value;
+
+  fetch('/messages.json', {
+    method: 'POST',
+    body: JSON.stringify({message: message})
+  })
+    .then(res => res.json())
+    .then(data => {
+      // Add message to chat interface
+      const list = document.getElementById('chat-list');
+      const item = document.createElement('li');
+      item.innerText = message;
+      list.appendChild(item);
+
+      // Clear input box
+      input.value = '';
+    });
+}
+
+// Read messages from JSON file
+fetch('/messages.json')
+  .then(res => res.json())
+  .then(data => {
+    const list = document.getElementById('chat-list');
+
+    // Add each message to chat interface
+    data.forEach(message => {
+      const item = document.createElement('li');
+      item.innerText = message;
+      list.appendChild(item);
+    });
+  });
+  </script>
