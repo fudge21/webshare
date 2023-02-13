@@ -12,7 +12,7 @@ function sendMessage() {
   const input = document.getElementById('input-box');
   const message = input.value;
 
-  fetch('/messages.json', {
+  fetch('messages.json', {
     method: 'POST',
     body: JSON.stringify({message: message})
   })
