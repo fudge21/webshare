@@ -1,5 +1,35 @@
-<video id="preview" style="width: 50%; height: 50%; display: inline-block; float: left;"  autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
-<video id="previewRight" style="width: 50%; height: 50%; left: 50%; display: inline-block; float: left;"  autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
+<style>
+    .video-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  height: 100%; 
+  overflow: hidden;
+}
+.video-container video {
+  /* Make video to at least 100% wide and tall */
+  min-width: 100%; 
+  min-height: 100%; 
+
+  /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+  width: auto;
+  height: auto;
+
+  /* Center the video */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+</style>
+<body style="height: 100%;">
+    <div class="video-container">
+<video id="preview" style="left: 40%;"  autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
+</div>
+<div class="video-container" style="left: 50%">
+<video id="previewRight"   autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
+</div>
 <script>
 navigator.mediaDevices
       .getUserMedia({
@@ -17,3 +47,4 @@ navigator.mediaDevices
         //return new Promise((resolve) => (preview.onplaying = resolve));
       })
       </script>
+</body>
