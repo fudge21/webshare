@@ -6,6 +6,7 @@
   width: 50%;
   height: 100%; 
   overflow: hidden;
+  display:none;
 }
 .video-container video {
   /* Make video to at least 100% wide and tall */
@@ -22,14 +23,36 @@
   left: 50%;
   transform: translate(-50%,-50%);
 }
+.center {
+    margin: auto;
+    text-align: center;
+}
 </style>
 <body style="height: 100%;">
+    <div class="center" id="videoinput">
+    <p>video url:</p>
+    <input type="text" id="videoURL" class="center">
+    <button onclick="Play()">play</button>
+    </div>
     <div class="video-container">
+        <iframe id="vid1" style="position: absolute; z-index: 10;" src="https://www.youtube.com/embed/?controls=0&autoplay=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share" allowfullscreen></iframe>
+        
 <video id="preview" style="left: 40%;"  autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
+
+
+
 </div>
+
+
 <div class="video-container" style="left: 50%">
+    <iframe id="vid2" style="position: absolute; z-index: 10;" src="https://www.youtube.com/embed/?controls=0&autoplay=1&mute=1"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; web-share" allowfullscreen></iframe>
+    
 <video id="previewRight"   autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
+
+
+
 </div>
+
 <script>
 navigator.mediaDevices
       .getUserMedia({
@@ -46,5 +69,16 @@ navigator.mediaDevices
           //preview.captureStream || preview.mozCaptureStream;
         //return new Promise((resolve) => (preview.onplaying = resolve));
       })
+      
+      function Play() {
+          var videoURL = document.getElementById("videoURL").value
+          var videoID = videoURL.split("/")[3];
+          var newURL = "https://www.youtube.com/embed/"+videoID+"?controls=0&autoplay=1"
+          document.getElementById("vid1").src = newURL
+          document.getElementById("vid2").src = newURL+"&mute=1"
+          document.getElementById("videoinput").style.display="none";
+          document.getElementsByClassName("video-container")[0].style.display="block";
+          document.getElementsByClassName("video-container")[1].style.display="block";
+      }
       </script>
 </body>
