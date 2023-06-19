@@ -1,16 +1,13 @@
-<video controls><source id="player"></video>
-<script>
-  const player = document.getElementById('player');
-
-  const handleSuccess = function (stream) {
-    if (window.URL) {
-      player.srcObject = stream;
-    } else {
-      player.src = stream;
-    }
-  };
-
-  navigator.mediaDevices
-    .getUserMedia({audio: false, video: true})
-    .then(handleSuccess);
-</script>
+<video id="preview" width="160" height="120" autoplay muted></video>
+navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+        audio: true,
+      })
+      .then((stream) => {
+        preview.srcObject = stream;
+        //downloadButton.href = stream;
+        //preview.captureStream =
+          //preview.captureStream || preview.mozCaptureStream;
+        //return new Promise((resolve) => (preview.onplaying = resolve));
+      })
