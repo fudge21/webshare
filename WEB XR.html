@@ -2,8 +2,10 @@
 <script>
 navigator.mediaDevices
       .getUserMedia({
-        video: true,
-        audio: true,
+        video: false,
+        video: {
+            facingMode: 'environment'
+        }
       })
       .then((stream) => {
         preview.srcObject = stream;
