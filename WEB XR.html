@@ -1,4 +1,4 @@
-<audio id="player" controls></audio>
+<video controls><source id="player"></video>
 <script>
   const player = document.getElementById('player');
 
@@ -11,6 +11,6 @@
   };
 
   navigator.mediaDevices
-    .getUserMedia({audio: true, video: false})
+    .getUserMedia({audio: false, video: true})
     .then(handleSuccess);
 </script>
