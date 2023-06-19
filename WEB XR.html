@@ -30,8 +30,12 @@
 </style>
 <body style="height: 100%;">
     <div class="center" id="videoinput">
-    <p>video url:</p>
+    <p>url:</p>
     <input type="text" id="videoURL" class="center">
+    <select id="mode">
+  <option value="SV">Small Video</option>
+  <option value="FV">Full video</option>
+</select>
     <button onclick="Play()">play</button>
     </div>
     <div class="video-container">
@@ -79,6 +83,12 @@ navigator.mediaDevices
           document.getElementById("videoinput").style.display="none";
           document.getElementsByClassName("video-container")[0].style.display="block";
           document.getElementsByClassName("video-container")[1].style.display="block";
+          if (document.getElementById("mode").value == "FV") {
+              document.getElementById("vid1").style.width="100%";
+            document.getElementById("vid2").style.width="100%";
+            document.getElementById("vid1").style.height="100%";
+            document.getElementById("vid2").style.height="100%";
+          }
       }
       </script>
 </body>
