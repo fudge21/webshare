@@ -1,4 +1,5 @@
-<video id="preview" width="160" height="120"  autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
+<video id="preview" style="width: 50%; height: 50%;"  autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
+<video id="previewRight" style="width: 50%; height: 50%; left: 50%;"  autoplay="autoplay" loop="loop" muted defaultMuted playsinline  oncontextmenu="return false;"  preload="auto"  ></video>
 <script>
 navigator.mediaDevices
       .getUserMedia({
@@ -8,7 +9,8 @@ navigator.mediaDevices
         }
       })
       .then((stream) => {
-        preview.srcObject = stream;
+        document.getElementById("preview").srcObject = stream;
+      document.getElementById("previewRight").srcObject = stream;
         //downloadButton.href = stream;
         //preview.captureStream =
           //preview.captureStream || preview.mozCaptureStream;
