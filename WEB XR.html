@@ -33,6 +33,7 @@
     <p>url:</p>
     <input type="text" id="videoURL" class="center">
     <select id="mode">
+        <option value="P">Plain Reality</option>
   <option value="SV">Small Video</option>
   <option value="FV">Full video</option>
 </select>
@@ -88,6 +89,9 @@ navigator.mediaDevices
             document.getElementById("vid2").style.width="100%";
             document.getElementById("vid1").style.height="100%";
             document.getElementById("vid2").style.height="100%";
+          } else if (document.getElementById("mode").value == "P") {
+            document.getElementById("vid1").remove();
+            document.getElementById("vid2").remove();
           }
       }
       </script>
