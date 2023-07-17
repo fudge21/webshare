@@ -25,12 +25,9 @@
 
   const provider = new GoogleAuthProvider();
 
-  //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   auth.useDeviceLanguage();
 
-  provider.setCustomParameters({
-    'login_hint': 'user@example.com'
-  });
 
   signInWithPopup(auth, provider)
   .then((result) => {
@@ -40,6 +37,7 @@
     // The signed-in user info.
     const user = result.user;
     console.log(user)
+    console.log(user.uid)
     // IdP data available using getAdditionalUserInfo(result)
     // ...
   }).catch((error) => {
