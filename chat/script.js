@@ -25,7 +25,7 @@
 
   const provider = new GoogleAuthProvider();
 
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  //provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   auth.useDeviceLanguage();
 
   provider.setCustomParameters({
