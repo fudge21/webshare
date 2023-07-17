@@ -3,6 +3,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js";
   import { GoogleAuthProvider, getAuth, signInWithPopup  } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,11 +23,27 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const auth = getAuth();
+  const db = getFirestore(app);
 
   const provider = new GoogleAuthProvider();
 
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
   auth.useDeviceLanguage();
+
+  function addUserToDatabase(uid,UsersName,photoinfo) {
+    try {
+        const docRef = await addDoc(collection(db, "users/"+uid), {
+          name: UsersName,
+          photo: photoinfo,
+          banned: false
+        });
+      
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+        addUserToDatabase()
+      }
+  }
 
 
   signInWithPopup(auth, provider)
@@ -38,6 +55,7 @@
     const user = result.user;
     console.log(user)
     console.log(user.uid)
+    addUserToDatabase(user.uid,user.displayName,user.photoURL)
     // IdP data available using getAdditionalUserInfo(result)
     // ...
   }).catch((error) => {
