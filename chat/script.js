@@ -3,7 +3,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-analytics.js";
   import { GoogleAuthProvider, getAuth, signInWithPopup  } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+  import { getFirestore, collection, addDoc,doc, setDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
   // TODO: Add SDKs for Firebase products that you want to use
   // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,18 +31,11 @@
   auth.useDeviceLanguage();
 
   function addUserToDatabase(uid,UsersName,photoinfo) {
-    try {
-        const docRef = await addDoc(collection(db, "users/"+uid), {
-          name: UsersName,
+    await setDoc(doc(db, "cities", uid), {
+      name: UsersName,
           photo: photoinfo,
           banned: false
-        });
-      
-        console.log("Document written with ID: ", docRef.id);
-      } catch (e) {
-        console.error("Error adding document: ", e);
-        addUserToDatabase()
-      }
+    });
   }
 
 
