@@ -31,7 +31,7 @@
   auth.useDeviceLanguage();
 
   function addUserToDatabase(uid,UsersName,photoinfo) {
-    await setDoc(doc(db, "cities", uid), {
+    await setDoc(doc(db, "Users", uid), {
       name: UsersName,
           photo: photoinfo,
           banned: false
