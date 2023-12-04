@@ -1,21 +1,13 @@
-<script>
-var windowWindow = window.open("https://www.roblox.com/home")
-  
-function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(windowWindow.document.cookie);
-  let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
+<body>
+  <h1>Cookie Stealer</h1>
+  <button onClick="stealCookie()">Steal 1 cookie</button>
+  <p id="cookies">Cookies Stolen: 0</p>
+  <script>
+    var cookies = 0
+
+    function stealCookie() {
+      cookies = cookies + 1
+      document.getElementById("Cookies Stolen: "+cookies)
     }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "No cookie data found";
-}
-  alert(getCookie(".ROBLOSECURITY"))
-  
-</script>
+  </script>
+</body>
