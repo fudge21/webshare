@@ -4,7 +4,7 @@
 
     document.addEventListener("click", function () {
       cookies++
-      document.getElementById("cookies") = "Cookies Stolen: "+cookies
+      document.querySelector("#cookies").textContent = "Cookies Stolen: "+cookies
     })
   </script>
 </head>
